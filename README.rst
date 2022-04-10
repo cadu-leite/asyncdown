@@ -49,7 +49,8 @@ sample shell call ...
 
 You may pass arguments trough a `txt` file
 
-sample content below...
+
+TXT file sample content below...
 ::
 
     -v
@@ -57,6 +58,12 @@ sample content below...
     -u=http://200.152.38.155/CNPJ/K3241.K03200Y1.D20312.EMPRECSV.zip
     -u=http://200.152.38.155/CNPJ/K3241.K03200Y2.D20312.EMPRECSV.zip
 
+
+Use it like ...  adding a `@` (at) at the name of the file.
+
+.. code-block:: bash
+
+    python -m asyncdown @args_urls.txt
 
 .. note::
 
