@@ -18,17 +18,7 @@ class FileDwld:
         self.name = self.url.split('/')[-1]
 
 
-class Download():
-
-    # concur = 5
-    # urls = None
-    # verbose = True
-
-    # status= {}
-    # file_list = []
-
-    # time_init = None
-    # time_end = None
+class ADDownload():
 
 
     def __init__(self, urls, concur = 5, verbose=True):
@@ -63,9 +53,13 @@ class Download():
         le tamanho dos arquivos previamente
         '''
         async with aiohttp.ClientSession() as session:
-            async with session.head(file_dwld.url) as request:
-                file_dwld.size = request.content_length
-                print(f'{file_dwld.name}: {file_dwld.size}')
+            try:
+                async with session.head(file_dwld.url) as request:
+                    file_dwld.size = request.content_length
+                    print(f'{file_dwld.name}: {file_dwld.size}')
+            except aiohttp.client_exceptions.ClientConnectorError:
+                print(f'ERRO Nao foi possível conectar com o cliente')
+
 
     async def fetch_file(self, session, semaphore_qtt, file_dwld):
         async with semaphore_qtt:
